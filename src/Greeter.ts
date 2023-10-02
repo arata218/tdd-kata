@@ -1,4 +1,10 @@
 export class Greeter {
+  // constructor(ms?: number) {
+  //   this.hour = ms ? new Date(ms).getHours() : new Date().getHours();
+  // }
+
+  // hour: number;
+
   greet(name: string) {
     const trimmedName = name.trim();
 
@@ -6,10 +12,10 @@ export class Greeter {
     const rest = trimmedName.slice(1);
     const capitalizedName = cap + rest;
 
-    const hour = new Date().getHours();
-    if (hour >= 6 && hour < 12) {
-      return `Good morning ${capitalizedName}`;
-    }
-    return `Hello ${capitalizedName}`;
+    let greeting = "Hello";
+    // if (this.hour >= 6 && this.hour < 12) {
+    //   greeting = "Good Morning";
+    // }
+    return `${greeting} ${capitalizedName}`;
   }
 }

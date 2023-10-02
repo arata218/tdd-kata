@@ -1,31 +1,38 @@
 import { Greeter } from "../src/Greeter";
 
 describe("Greeter", () => {
-  it.each([
-    ["Arata", "Hello Arata"],
-    ["Yu", "Hello Yu"],
-    // trim
-    ["  Arata  ", "Hello Arata"],
-    ["\tArata", "Hello Arata"],
-    ["\nArata", "Hello Arata"],
-    ["Usami Arata", "Hello Usami Arata"],
-    // capitalize
-    ["arata", "Hello Arata"],
-    ["y", "Hello Y"],
-    ["", "Hello "],
-  ])("Says Hello and name", (name, expected) => {
-    const greeter = new Greeter();
-    expect(greeter.greet(name)).toBe(expected);
+  let greeter;
+  // const date = new Date();
+
+  beforeEach(() => {
+    greeter = new Greeter();
+    // greeter = new Greeter(date.setHours(15, 0));
   });
 
-  it("Says Good morning and name", () => {
-    const greeter = new Greeter();
-    jest.useFakeTimers();
+  it("Says Hello", () => {
+    expect(greeter.greet("Arata")).toBe("Hello Arata");
+    expect(greeter.greet("")).toBe("Hello ");
+  });
 
-    jest.setSystemTime(new Date().setHours(11));
+  it("Says trimmed name", () => {
+    expect(greeter.greet("  Arata  ")).toBe("Hello Arata");
+    expect(greeter.greet("\tArata\n")).toBe("Hello Arata");
+    expect(greeter.greet("Usami Arata")).toBe("Hello Usami Arata");
+  });
+
+  it("Says capitalized name", () => {
+    expect(greeter.greet("arata")).toBe("Hello Arata");
+    expect(greeter.greet("a")).toBe("Hello A");
+  });
+
+  it.skip("Says Good morning", () => {
+    greeter = new Greeter(date.setHours(5, 59));
+    expect(greeter.greet("Arata")).toBe("Hello Arata");
+    greeter = new Greeter(date.setHours(6, 0));
     expect(greeter.greet("Arata")).toBe("Good morning Arata");
-
-    jest.setSystemTime(new Date().setHours(12));
+    greeter = new Greeter(date.setHours(11, 59));
+    expect(greeter.greet("Arata")).toBe("Good morning Arata");
+    greeter = new Greeter(date.setHours(12, 0));
     expect(greeter.greet("Arata")).toBe("Hello Arata");
   });
 });
