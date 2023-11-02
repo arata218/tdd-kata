@@ -1,13 +1,11 @@
 export class StringCalcurator {
-  add(str: String) {
-    let arr = [];
+  add(str: string) {
+    let delimiter = "";
 
     if (str.startsWith("//")) {
-      const delimiter = str[2];
-      arr = str.slice(3).split(/[,\n#{delimiter}]/);
-    } else {
-      arr = str.split(/[,\n]/);
+      delimiter = str[2];
     }
+    const arr = str.split(/[/,\n#{delimiter}]/);
 
     let sum = 0;
     const negatives = [];

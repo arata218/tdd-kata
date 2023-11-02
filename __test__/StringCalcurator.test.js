@@ -38,4 +38,8 @@ describe("StringCalcurator", () => {
   test("A single char delimiter can be defined on the first line starting with //", () => {
     expect(calc.add("//#\n1#2")).toBe(3);
   });
+
+  test("A multi char delimiter can be defined on the first line starting with //", () => {
+    expect(calc.add("//###\n1###2")).toBe(3);
+  });
 });
