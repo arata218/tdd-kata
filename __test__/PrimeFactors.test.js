@@ -34,4 +34,12 @@ describe("PrimeFactors", () => {
   test("8 should return [2, 2, 2]", () => {
     expect(pf.generate(8)).toStrictEqual([2, 2, 2]);
   });
+
+  test("9 should return [3, 3]", () => {
+    expect(pf.generate(9)).toStrictEqual([3, 3]);
+  });
+
+  test("4620 should return [2,2,3,5,7,11]", () => {
+    expect(pf.generate(4620)).toStrictEqual([2, 2, 3, 5, 7, 11]);
+  });
 });

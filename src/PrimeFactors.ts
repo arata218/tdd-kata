@@ -1,13 +1,15 @@
 export class PrimeFactors {
-  generate(n: number) {
-    const list = [];
-    let temp = n;
+  generate(num: number) {
+    const factors = [];
+    let temp = num;
 
-    while (temp > 1) {
-      list.push(temp);
-      temp /= 2;
+    for (let div = 2; div <= num; div++) {
+      while (temp % div === 0) {
+        factors.push(div);
+        temp /= div;
+      }
     }
 
-    return list;
+    return factors;
   }
 }
