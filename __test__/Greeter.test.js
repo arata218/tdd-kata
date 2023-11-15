@@ -13,23 +13,23 @@ describe("Greeter", () => {
     jest.useRealTimers();
   });
 
-  it("returns Hello <name>", () => {
+  test("Returns Hello <name>", () => {
     expect(greeter.greet("Arata")).toBe("Hello Arata");
     expect(greeter.greet("")).toBe("Hello ");
   });
 
-  it("trims the input", () => {
+  test("Trims the input", () => {
     expect(greeter.greet("  Arata  ")).toBe("Hello Arata");
     expect(greeter.greet("\tArata\n")).toBe("Hello Arata");
     expect(greeter.greet("Usami Arata")).toBe("Hello Usami Arata");
   });
 
-  it("capitalizes the first letter of the name", () => {
+  test("Capitalizes the first letter of the name", () => {
     expect(greeter.greet("arata")).toBe("Hello Arata");
     expect(greeter.greet("a")).toBe("Hello A");
   });
 
-  it("returns Good morning <name> when the time is 06:00-12:00", () => {
+  test("Returns Good morning <name> when the time is 06:00-12:00", () => {
     jest.setSystemTime(new Date(2023, 9, 1, 5, 59));
     expect(new Greeter().greet("Arata")).toBe("Good night Arata");
     jest.setSystemTime(new Date(2023, 9, 1, 6, 0));
@@ -40,7 +40,7 @@ describe("Greeter", () => {
     expect(new Greeter().greet("Arata")).toBe("Hello Arata");
   });
 
-  it("returns Good evening <name> when the time is 18:00-22:00", () => {
+  test("Returns Good evening <name> when the time is 18:00-22:00", () => {
     jest.setSystemTime(new Date(2023, 9, 1, 17, 59));
     expect(new Greeter().greet("Arata")).toBe("Hello Arata");
     jest.setSystemTime(new Date(2023, 9, 1, 18, 0));
@@ -51,7 +51,7 @@ describe("Greeter", () => {
     expect(new Greeter().greet("Arata")).toBe("Good night Arata");
   });
 
-  it("returns Good night <name> when the time is 22:00-06:00", () => {
+  test("Returns Good night <name> when the time is 22:00-06:00", () => {
     jest.setSystemTime(new Date(2023, 9, 1, 21, 59));
     expect(new Greeter().greet("Arata")).toBe("Good evening Arata");
     jest.setSystemTime(new Date(2023, 9, 1, 22, 0));
@@ -62,7 +62,7 @@ describe("Greeter", () => {
     expect(new Greeter().greet("Arata")).toBe("Good morning Arata");
   });
 
-  it("logs into console each time it is called", () => {
+  test("Logs into console each time it is called", () => {
     const spy = jest.spyOn(console, "log");
     greeter.greet("Arata");
     expect(spy).toHaveBeenCalledWith("Hello Arata");
