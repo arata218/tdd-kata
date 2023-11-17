@@ -13,7 +13,7 @@ export class BowlingGame {
   throwed: boolean;
 
   roll(pins: number) {
-    if (pins < 0 || pins > 10) {
+    if (pins < 0 || pins > 10 || !Number.isInteger(pins)) {
       throw new Error(`impossible value: ${pins}`);
     }
     if (!this.throwed) {

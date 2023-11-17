@@ -16,9 +16,10 @@ describe("BowlingGame", () => {
     expect(game.getScore()).toBe(1);
   });
 
-  test("Roll impossible value returns error", () => {
+  test("Roll with impossible value returns error", () => {
     expect(() => game.roll(11)).toThrow("impossible value: 11");
     expect(() => game.roll(-1)).toThrow("impossible value: -1");
+    expect(() => game.roll(0.1)).toThrow("impossible value: 0.1");
   });
 
   test("1st frame", () => {
