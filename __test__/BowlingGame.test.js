@@ -44,12 +44,19 @@ describe("BowlingGame", () => {
   test("Spare", () => {
     game.roll(5);
     game.roll(5);
+    expect(game.bonus[0]).toBe("spare");
     game.roll(1);
     game.roll(1);
     expect(game.getScore()).toBe(13);
   });
 
-  test("Strike", () => {});
+  test("Strike", () => {
+    game.roll(10);
+    expect(game.bonus[0]).toBe("strike");
+    game.roll(1);
+    game.roll(1);
+    expect(game.getScore()).toBe(14);
+  });
 
   test("Turkey", () => {});
 
