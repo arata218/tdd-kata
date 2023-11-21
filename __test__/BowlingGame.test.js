@@ -61,4 +61,8 @@ describe("BowlingGame", () => {
   test("Turkey", () => {});
 
   test("10th frame", () => {});
+
+  test("Perfect", () => {});
+
+  test("Game end", () => {});
 });
