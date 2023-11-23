@@ -1,7 +1,6 @@
 type Frame = {
   first: number;
   second: number;
-  // third?: number;
 };
 
 type Bonus = "strike" | "spare" | "none";
@@ -11,19 +10,21 @@ export class BowlingGame {
     this.frames = [];
     this.throwed = false;
     this.bonus = [];
+    this.tenth = [];
   }
 
   frames: Frame[];
   throwed: boolean;
   bonus: Bonus[];
+  tenth: number[];
 
   roll(pins: number) {
     if (pins < 0 || pins > 10 || !Number.isInteger(pins)) {
       throw new Error(`impossible value: ${pins}`);
     }
 
-    if (this.frames.length === 9) {
-    }
+    // if (this.frames.length === 9 && !this.throwed) {
+    // }
 
     if (!this.throwed) {
       const frame: Frame = { first: pins, second: 0 };
@@ -60,6 +61,8 @@ export class BowlingGame {
       const score = f.first + f.second;
       totalScore += score;
     }
+
+    // totalScore += this.tenth.reduce((sum, elm) => sum + elm);
 
     this.bonus.forEach((b, i) => {
       switch (b) {
