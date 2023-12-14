@@ -20,7 +20,7 @@ export class BowlingGame {
 
   roll(pins: number) {
     if (pins < 0 || pins > 10 || !Number.isInteger(pins)) {
-      throw new Error(`impossible value: ${pins}`);
+      throw new Error(`Impossible value: ${pins}`);
     }
 
     // if (this.frames.length === 9 && !this.throwed) {
@@ -42,7 +42,7 @@ export class BowlingGame {
       frame.second = pins;
 
       if (frame.first + frame.second > 10) {
-        throw new Error("over 10 pins");
+        throw new Error("Over 10 pins");
       } else if (frame.first + frame.second === 10) {
         this.bonus.push("spare");
       } else {
@@ -67,11 +67,11 @@ export class BowlingGame {
     this.bonus.forEach((b, i) => {
       switch (b) {
         case "strike":
-          // if (this.frames[i + 1].first === 10) {
-          //   totalScore += 10 + this.frames[i + 2].first;
-          // } else {
-          totalScore += this.frames[i + 1].first + this.frames[i + 1].second;
-          // }
+          if (this.frames[i + 1].first === 10) {
+            totalScore += 10 + this.frames[i + 2].first;
+          } else {
+            totalScore += this.frames[i + 1].first + this.frames[i + 1].second;
+          }
           break;
         case "spare":
           totalScore += this.frames[i + 1].first;
