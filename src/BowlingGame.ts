@@ -74,7 +74,7 @@ export class BowlingGame {
     this.bonus.forEach((b, i) => {
       switch (b) {
         case "strike":
-          if (this.frames[i + 1][0] === 10) {
+          if (i !== 8 && this.frames[i + 1][0] === 10) {
             totalScore += 10 + this.frames[i + 2][0];
           } else {
             totalScore += this.frames[i + 1][0] + this.frames[i + 1][1];
