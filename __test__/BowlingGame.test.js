@@ -97,6 +97,23 @@ describe("BowlingGame", () => {
     expect(() => game.roll(1)).toThrow("Game end");
   });
 
+  test("Over 10 pins on second roll of 10th frame", () => {
+    for (let i = 0; i < 18; i++) {
+      game.roll(1);
+    }
+    game.roll(5);
+    expect(() => game.roll(6)).toThrow("Over 10 pins");
+  });
+
+  test("Over 10 pins on third roll of 10th frame", () => {
+    for (let i = 0; i < 18; i++) {
+      game.roll(1);
+    }
+    game.roll(10);
+    game.roll(5);
+    expect(() => game.roll(6)).toThrow("Over 10 pins");
+  });
+
   test("Perfect", () => {
     for (let i = 0; i < 9; i++) {
       game.roll(10);
