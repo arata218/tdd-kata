@@ -42,19 +42,14 @@ export class BowlingGame {
         return;
       }
 
-      if (f[0] + f[1] > 10) {
+      if ((f.at(-2) as number) + (f.at(-1) as number) > 10) {
         throw new Error("Over 10 pins");
       }
 
       this.frames.push(f);
-      if (f.length === 3) {
-        this.filled = true;
-        return;
-      }
 
-      if (f[0] + f[1] === 10) {
-        if (this.frames.length === 10) return;
-      }
+      if (f[0] + f[1] === 10 && this.frames.length === 10 && f.length === 2)
+        return;
 
       this.filled = true;
     }
@@ -81,6 +76,7 @@ export class BowlingGame {
       }
     });
 
+    console.log(this.frames);
     return totalScore;
   }
 }
