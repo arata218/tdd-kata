@@ -1,5 +1,7 @@
 type Frame = number[];
 
+const last = () => {};
+
 export class BowlingGame {
   constructor() {
     this.frames = [];
@@ -19,8 +21,7 @@ export class BowlingGame {
     }
 
     if (this.filled) {
-      const f: Frame = [pins];
-      this.frames.push(f);
+      this.frames.push([pins]);
 
       if (pins === 10) {
         if (this.frames.length === 10) this.filled = false;
@@ -30,26 +31,17 @@ export class BowlingGame {
       this.filled = false;
     } else {
       const f: Frame = this.frames.pop() as Frame;
-      f.push(pins);
 
-      if (f[0] === 10) {
-        if (f[1] !== 10 && f[1] + f[2] > 10) {
-          throw new Error("Over 10 pins");
-        }
-
-        this.frames.push(f);
-        if (f.length === 3) this.filled = true;
-        return;
-      }
-
-      if ((f.at(-2) as number) + (f.at(-1) as number) > 10) {
+      if ((f.at(-1) as number) + pins > 10 && (f.at(-1) as number) !== 10) {
         throw new Error("Over 10 pins");
       }
 
+      f.push(pins);
       this.frames.push(f);
 
-      if (f[0] + f[1] === 10 && this.frames.length === 10 && f.length === 2)
-        return;
+      if (this.frames.length === 10 && f.length === 2) {
+        if (f[0] === 10 || f[0] + f[1] === 10) return;
+      }
 
       this.filled = true;
     }
@@ -76,7 +68,6 @@ export class BowlingGame {
       }
     });
 
-    console.log(this.frames);
     return totalScore;
   }
 }
