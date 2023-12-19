@@ -1,6 +1,4 @@
-type Frame = number[];
-
-const last = () => {};
+const last = (arr: any) => arr[arr.length - 1];
 
 export class BowlingGame {
   constructor() {
@@ -8,7 +6,7 @@ export class BowlingGame {
     this.filled = true;
   }
 
-  frames: Frame[];
+  frames: number[][];
   filled: boolean;
 
   roll(pins: number) {
@@ -30,14 +28,13 @@ export class BowlingGame {
 
       this.filled = false;
     } else {
-      const f: Frame = this.frames.pop() as Frame;
+      const f: number[] = last(this.frames);
 
-      if ((f.at(-1) as number) + pins > 10 && (f.at(-1) as number) !== 10) {
+      if (last(f) + pins > 10 && last(f) !== 10) {
         throw new Error("Over 10 pins");
       }
 
       f.push(pins);
-      this.frames.push(f);
 
       if (this.frames.length === 10 && f.length === 2) {
         if (f[0] === 10 || f[0] + f[1] === 10) return;
