@@ -1,4 +1,7 @@
-const last = (arr: any) => arr[arr.length - 1];
+const lastFrame = (arr: number[][]) => arr[arr.length - 1];
+const lastThrow = (arr: number[]) => arr[arr.length - 1];
+const isStrike = (f: number[]) => f[0] === 10;
+const isSpare = (f: number[]) => f[0] + f[1] === 10;
 
 export class BowlingGame {
   constructor() {
@@ -18,26 +21,27 @@ export class BowlingGame {
       throw new Error(`Impossible value: ${pins}`);
     }
 
-    if (this.filled) {
-      this.frames.push([pins]);
+    if (
+      !this.filled &&
+      lastThrow(lastFrame(this.frames)) + pins > 10 &&
+      lastThrow(lastFrame(this.frames)) !== 10
+    ) {
+      throw new Error("Over 10 pins");
+    }
 
-      if (pins === 10) {
-        if (this.frames.length === 10) this.filled = false;
-        return;
-      }
+    if (this.filled) {
+      const f = [pins];
+      this.frames.push(f);
+
+      if (isStrike(f) && this.frames.length !== 10) return;
 
       this.filled = false;
     } else {
-      const f: number[] = last(this.frames);
-
-      if (last(f) + pins > 10 && last(f) !== 10) {
-        throw new Error("Over 10 pins");
-      }
-
+      const f = lastFrame(this.frames);
       f.push(pins);
 
       if (this.frames.length === 10 && f.length === 2) {
-        if (f[0] === 10 || f[0] + f[1] === 10) return;
+        if (isStrike(f) || isSpare(f)) return;
       }
 
       this.filled = true;
@@ -52,15 +56,15 @@ export class BowlingGame {
 
       if (i == 9) return;
 
-      if (f[0] === 10) {
-        if (i !== 8 && this.frames[i + 1][0] === 10) {
+      if (isStrike(f)) {
+        if (i !== 8 && isStrike(this.frames[i + 1])) {
           totalScore += 10 + this.frames[i + 2][0];
         } else {
           totalScore += this.frames[i + 1][0] + this.frames[i + 1][1];
         }
       }
 
-      if (f[0] + f[1] === 10) {
+      if (isSpare(f)) {
         totalScore += this.frames[i + 1][0];
       }
     });

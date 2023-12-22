@@ -1,10 +1,10 @@
 export class FizzBuzz {
   constructor() {}
 
-  generate() {
+  generate(from: number = 1, to: number = 100) {
     let arr: (number | string)[] = [];
 
-    for (let i = 1; i <= 100; i += 1) {
+    for (let i = from; i <= to; i += 1) {
       if (i % 15 === 0) {
         arr.push("FizzBuzz");
       } else if (i % 3 === 0) {
