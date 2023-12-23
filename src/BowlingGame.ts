@@ -1,3 +1,25 @@
+// declare global {
+//   interface Array<T> {
+//     lastFrame(): T;
+//     lastThrow(): T;
+//     isStrike(): boolean;
+//     isSpare(): boolean;
+//   }
+// }
+
+// Array.prototype.lastFrame = function () {
+//   return this[this.length - 1];
+// };
+// Array.prototype.lastThrow = function () {
+//   return this[this.length - 1];
+// };
+// Array.prototype.isStrike = function () {
+//   return this[0] === 10;
+// };
+// Array.prototype.isSpare = function () {
+//   return this[0] + this[1] === 10;
+// };
+
 const lastFrame = (arr: number[][]) => arr[arr.length - 1];
 const lastThrow = (arr: number[]) => arr[arr.length - 1];
 const isStrike = (f: number[]) => f[0] === 10;
