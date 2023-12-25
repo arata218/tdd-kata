@@ -13,8 +13,11 @@ describe("FizzBuzz", () => {
     expect(fizzbuzz.generate(15, 50)).toStrictEqual(fixtures.From15to50);
   });
 
-  test("FooBoo", () => {
-    const fizzbuzz = new FizzBuzz();
-    expect(fizzbuzz.generate).toStrictEqual(fixtures.FizzBuzzFooBoo);
+  test("add FooBoo", () => {
+    const fizzbuzz = new FizzBuzz([
+      [7, "Foo"],
+      [11, "Boo"],
+    ]);
+    expect(fizzbuzz.generate()).toStrictEqual(fixtures.FooBoo);
   });
 });

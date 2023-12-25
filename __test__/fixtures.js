@@ -365,7 +365,7 @@ export const fixtures = {
     "FizzBoo",
     "Buzz",
   ],
-  FizzBuzzFooBoo: [
+  FooBoo: [
     1,
     2,
     "Fizz",

@@ -1,27 +1,29 @@
-type Rule = { value: number; word: string };
+type Rule = [number, string];
 
 export class FizzBuzz {
-  constructor(r: Rule[]) {
-    this.rules = [
-      { value: 3, word: "Fizz" },
-      { value: 5, word: "Buzz" },
-    ];
-    this.rules.concat(r);
+  constructor(additionalRules: Rule[]) {
+    const map = new Map(additionalRules);
+    map.set(3, "Fizz");
+    map.set(5, "Buzz");
+    this.rules = new Map([...map].sort((a, b) => a[0] - b[0]));
+
+    console.log(this.rules);
   }
 
-  rules: Rule[];
+  rules: Map<number, string>;
 
   generate(from: number = 1, to: number = 100) {
     let arr: (number | string)[] = [];
     let str: string = "";
 
     for (let i = from; i <= to; i += 1) {
-      if (i % (this.rules[0].value * this.rules[1].value) === 0) {
-        arr.push(this.rules[0].word + this.rules[1].word);
-      } else if (i % this.rules[0].value === 0) {
-        arr.push(this.rules[0].word);
-      } else if (i % this.rules[1].value === 0) {
-        arr.push(this.rules[1].word);
+      this.rules.forEach((word, key) => {
+        if (i % key === 0) str += word;
+      });
+
+      if (str) {
+        arr.push(str);
+        str = "";
       } else {
         arr.push(i);
       }
