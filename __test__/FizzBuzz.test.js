@@ -18,6 +18,32 @@ describe("FizzBuzz", () => {
       [7, "Foo"],
       [11, "Boo"],
     ]);
-    expect(fizzbuzz.generate()).toStrictEqual(fixtures.FooBoo);
+    expect(fizzbuzz.generate()).toStrictEqual(fixtures.FizzBuzzFooBoo);
+  });
+
+  test("add Small", () => {
+    const fizzbuzz = new FizzBuzz([], false, 16);
+    expect(fizzbuzz.generate()).toStrictEqual(fixtures.SmallFizzBuzz);
+  });
+
+  test("add Big", () => {
+    const fizzbuzz = new FizzBuzz([], false, 0, 95);
+    expect(fizzbuzz.generate()).toStrictEqual(fixtures.BigFizzBuzz);
+  });
+
+  test("BuzzFizz", () => {
+    const fizzbuzz = new FizzBuzz(
+      [
+        [3, "Buzz"],
+        [5, "Fizz"],
+      ],
+      true
+    );
+    expect(fizzbuzz.generate()).toStrictEqual(fixtures.BuzzFizz);
+  });
+
+  test("FTW", () => {
+    const fizzbuzz = new FizzBuzz([[15, "FTW"]], true);
+    expect(fizzbuzz.generate()).toStrictEqual(fixtures.FTW);
   });
 });
