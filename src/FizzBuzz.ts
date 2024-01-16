@@ -1,17 +1,11 @@
 type Rule = {
-  key: number;
   word: string;
-  conditional: (i: number, key: number) => boolean;
+  conditional: (i: number) => boolean;
 };
-
-export const multiple = (i: number, key: number) => i % key === 0;
-export const smaller = (i: number, key: number) => i < key;
-export const bigger = (i: number, key: number) => i > key;
 
 export class FizzBuzz {
   constructor(rules: Rule[]) {
     this.rules = rules;
-    this.rules.sort((a, b) => a.key - b.key);
   }
 
   rules: Rule[];
@@ -23,13 +17,7 @@ export class FizzBuzz {
       let str: string = "";
 
       this.rules.forEach((rule) => {
-        if (rule.conditional(i, rule.key)) {
-          if (rule.conditional !== multiple) {
-            str = rule.word + str;
-          } else {
-            str += rule.word;
-          }
-        }
+        if (rule.conditional(i)) str += rule.word;
       });
 
       if (str) {
