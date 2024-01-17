@@ -2,8 +2,8 @@ import { FizzBuzz } from "../src/FizzBuzz";
 import { fixtures } from "./fixtures";
 
 const DEFAULT_RULES = [
-  { word: "Fizz", conditional: (i) => i % 3 === 0 },
-  { word: "Buzz", conditional: (i) => i % 5 === 0 },
+  { word: "Fizz", cond: (i) => i % 3 === 0 },
+  { word: "Buzz", cond: (i) => i % 5 === 0 },
 ];
 
 describe("FizzBuzz", () => {
@@ -21,15 +21,15 @@ describe("FizzBuzz", () => {
   test("add FooBoo", () => {
     const fizzbuzz = new FizzBuzz([
       ...DEFAULT_RULES,
-      { word: "Foo", conditional: (i) => i % 7 === 0 },
-      { word: "Boo", conditional: (i) => i % 11 === 0 },
+      { word: "Foo", cond: (i) => i % 7 === 0 },
+      { word: "Boo", cond: (i) => i % 11 === 0 },
     ]);
     expect(fizzbuzz.generate()).toStrictEqual(fixtures.FizzBuzzFooBoo);
   });
 
   test("add Small", () => {
     const fizzbuzz = new FizzBuzz([
-      { word: "Small", conditional: (i) => i < 16 },
+      { word: "Small", cond: (i) => i < 16 },
       ...DEFAULT_RULES,
     ]);
     expect(fizzbuzz.generate()).toStrictEqual(fixtures.SmallFizzBuzz);
@@ -37,7 +37,7 @@ describe("FizzBuzz", () => {
 
   test("add Big", () => {
     const fizzbuzz = new FizzBuzz([
-      { word: "Big", conditional: (i) => i > 95 },
+      { word: "Big", cond: (i) => i > 95 },
       ...DEFAULT_RULES,
     ]);
     expect(fizzbuzz.generate()).toStrictEqual(fixtures.BigFizzBuzz);
@@ -45,8 +45,8 @@ describe("FizzBuzz", () => {
 
   test("BuzzFizz", () => {
     const fizzbuzz = new FizzBuzz([
-      { word: "Buzz", conditional: (i) => i % 3 === 0 },
-      { word: "Fizz", conditional: (i) => i % 5 === 0 },
+      { word: "Buzz", cond: (i) => i % 3 === 0 },
+      { word: "Fizz", cond: (i) => i % 5 === 0 },
     ]);
     expect(fizzbuzz.generate()).toStrictEqual(fixtures.BuzzFizz);
   });
@@ -55,7 +55,7 @@ describe("FizzBuzz", () => {
     const fizzbuzz = new FizzBuzz([
       {
         word: "FTW",
-        conditional: (i) => i % 3 === 0 && i % 5 === 0,
+        cond: (i) => i % 3 === 0 && i % 5 === 0,
       },
     ]);
     expect(fizzbuzz.generate()).toStrictEqual(fixtures.FTW);
@@ -65,7 +65,7 @@ describe("FizzBuzz", () => {
     const fizzbuzz = new FizzBuzz([
       {
         word: "GG",
-        conditional: (i) => i % 3 === 0 || i % 5 === 0,
+        cond: (i) => i % 3 === 0 || i % 5 === 0,
       },
     ]);
     expect(fizzbuzz.generate()).toStrictEqual(fixtures.GG);

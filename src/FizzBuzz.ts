@@ -1,6 +1,6 @@
 type Rule = {
   word: string;
-  conditional: (i: number) => boolean;
+  cond: (i: number) => boolean;
 };
 
 export class FizzBuzz {
@@ -17,7 +17,7 @@ export class FizzBuzz {
       let str: string = "";
 
       this.rules.forEach((rule) => {
-        if (rule.conditional(i)) str += rule.word;
+        if (rule.cond(i)) str += rule.word;
       });
 
       if (str) {
